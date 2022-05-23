@@ -27,7 +27,6 @@ func (z *Zap) Warn(ctx context.Context, msg string, fields ...KeyValue) {
 }
 
 func (z *Zap) Error(ctx context.Context, msg string, fields ...KeyValue) {
-	z.writer.With()
 	z.writer.Error(msg, localFieldZapFields(ctx, TypeSys, fields)...)
 }
 
