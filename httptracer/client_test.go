@@ -1,6 +1,7 @@
 package httptracer_test
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"github.com/yusufsyaifudin/ylog/httptracer"
 	"io"
@@ -31,7 +32,7 @@ func (l *Library) callExampleCom() (out []byte, err error) {
 }
 
 func TestRoundTripper_RoundTrip(t *testing.T) {
-	url := "https://example.com"
+	url := "https://imdb-api.com/en/API/Search/k_12345678/inception%202010"
 	roundTripper := httptracer.NewHTTPClientTracer(http.DefaultTransport)
 
 	httpClient := http.DefaultClient
@@ -46,6 +47,8 @@ func TestRoundTripper_RoundTrip(t *testing.T) {
 		out, err := lib.callExampleCom()
 		assert.NotNil(t, out)
 		assert.NoError(t, err)
+
+		fmt.Println("OUTPUT from server", string(out))
 	})
 
 }
